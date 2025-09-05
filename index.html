@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>C2C Swap — Built in the USA</title>
+  <meta name="description" content="C2C Swap — A U.S.-built DEX. Fast swaps, transparent fees, security-first design. Launching soon." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green:#00B86B;       /* C2C primary */
+      --neon:#7FFF00;        /* accent */
+      --bg:#0E0F12;          /* deeper dark */
+      --card:#121419;        /* card */
+      --ink:#FFFFFF;         /* text */
+      --muted:#B8C0CC;       /* subtext */
+      --blue:#0A5FFF;        /* USA blue accent */
+      --red:#FF3B3B;         /* USA red accent */
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      background:
+        radial-gradient(1200px 800px at 80% -10%, rgba(10,95,255,.12), transparent 60%),
+        radial-gradient(800px 600px at 10% 110%, rgba(255,59,59,.12), transparent 60%),
+        var(--bg);
+      color:var(--ink);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    .container{max-width:1200px; margin:0 auto; padding:22px}
+
+    /* ======= HEADER (new, compact) ======= */
+    header{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .brand{display:flex; align-items:center; gap:12px}
+    .seal{
+      width:46px; height:46px; border-radius:50%; display:grid; place-items:center; background:conic-gradient(from 0deg, var(--green), #0aa362);
+      box-shadow:0 0 0 2px rgba(255,255,255,.06), 0 10px 28px rgba(0,0,0,.35);
+      position:relative; overflow:hidden;
+    }
+    .seal:after{content:""; position:absolute; inset:8px; border:2px solid rgba(255,255,255,.35); border-radius:50%}
+    .wordmark{font-weight:800; letter-spacing:.2px}
+    nav a{color:var(--muted); text-decoration:none; padding:10px 12px; border-radius:12px}
+    nav a:hover{color:#fff; background:#151821}
+
+    /* ======= HERO (completely different layout) ======= */
+    .hero{display:grid; grid-template-columns:1.2fr 1fr; gap:28px; align-items:center; padding:36px 0}
+    .flagpanel{position:relative; border:1px solid rgba(255,255,255,.06); background:linear-gradient(160deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border-radius:var(--radius); overflow:hidden}
+    .flag{
+      position:absolute; inset:0; background:
+        linear-gradient( to right, rgba(255,59,59,.18), rgba(255,255,255,0) 30% ),
+        linear-gradient( 180deg, rgba(10,95,255,.20), rgba(10,95,255,.05) 60%, transparent 70% );
+      mask: linear-gradient(180deg, rgba(0,0,0,.8), rgba(0,0,0,0.1));
+      filter: blur(2px);
+    }
+    .flagstars{position:absolute; top:16px; left:16px; display:grid; grid-template-columns:repeat(6, 10px); gap:8px; opacity:.25}
+    .flagstars span{width:8px;height:8px; background:#fff; border-radius:2px}
+    .heroContent h1{font-size: clamp(28px, 4.6vw, 54px); line-height:1.06; margin:8px 0}
+    .heroLead{color:var(--muted); max-width:720px}
+
+    .badgeUS{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border:1px solid rgba(255,255,255,.10); border-radius:999px; background:#0D1117}
+    .flagchip{display:inline-grid; grid-auto-flow:column; gap:2px; background:#000; border-radius:6px; padding:2px}
+    .flagchip i{width:10px; height:10px; display:block}
+    .flagchip i.r{background:var(--red)}
+    .flagchip i.w{background:#fff}
+    .flagchip i.b{background:var(--blue)}
+
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .btn{padding:12px 16px; border-radius:14px; font-weight:700; border:1px solid rgba(255,255,255,.12); background:#151821; color:#fff}
+    .btn.primary{background:linear-gradient(135deg, var(--green), #0aa362); border-color:transparent; box-shadow:0 12px 24px rgba(0,184,107,.22)}
+    .btn.ghost{background:transparent}
+
+    /* ======= INFO STRIP (new element) ======= */
+    .infostrip{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:26px 0}
+    .pill{background:#0F131B; border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:12px 14px; display:flex; align-items:center; gap:10px}
+    .pill .tick{width:8px;height:8px;border-radius:50%; background:var(--green); box-shadow:0 0 0 6px rgba(0,184,107,.12)}
+    .mini{color:var(--muted); font-size:13px}
+
+    /* ======= FEATURE TILES (diagonal style) ======= */
+    .tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .tile{position:relative; border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:18px; background:linear-gradient(160deg, rgba(255,255,255,.02), rgba(255,255,255,.01))}
+    .tile:after{content:""; position:absolute; inset:auto -20% -40% -20%; height:60%; background:linear-gradient(135deg, rgba(10,95,255,.18), rgba(0,184,107,.00)); filter:blur(30px); pointer-events:none}
+    .tile h3{margin:2px 0 6px}
+    .tile p{margin:0; color:var(--muted)}
+
+    /* ======= TIMELINE (brand-new section) ======= */
+    .timeline{margin:26px 0; display:grid; gap:14px}
+    .step{display:grid; grid-template-columns:110px 1fr; gap:14px; align-items:start}
+    .step .left{color:#cfe6ff; font-weight:700}
+    .step .right{background:#0F131B; border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:14px}
+
+    /* ======= FOOTER ======= */
+    footer{margin-top:40px; border-top:1px solid rgba(255,255,255,.06)}
+    .foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding:18px 0}
+    .links{display:flex; gap:14px; flex-wrap:wrap}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .infostrip{grid-template-columns:1fr 1fr}
+      .tiles{grid-template-columns:1fr 1fr}
+      .step{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      .tiles{grid-template-columns:1fr}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="seal" aria-hidden="true"></div>
+        <div>
+          <div class="wordmark">C2C Swap</div>
+          <div class="mini">Borderless. Compliant. On‑Chain.</div>
+        </div>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#legal">Compliance</a>
+        <a href="https://github.com/codetocapital" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="heroContent">
+        <span class="badgeUS">
+          <span class="flagchip" aria-hidden="true"><i class="r"></i><i class="w"></i><i class="b"></i></span>
+          <strong>DEX • MADE IN USA</strong>
+        </span>
+        <h1>High‑integrity swaps. <span style="color:var(--green)">Built in the USA.</span></h1>
+        <p class="heroLead">The C2C decentralized exchange is engineered and assembled in the United States with a security‑first stack: integer‑only math, multisig authorities, advanced oracle policies, and immutable journaling hooks. Fast for traders, strict for attackers.</p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="mailto:admin@codetocapital.us">Get early access</a>
+          <a class="btn ghost" href="#timeline">See launch timeline</a>
+        </div>
+
+        <div class="infostrip">
+          <div class="pill"><span class="tick"></span><div><strong>Texas LLC</strong><div class="mini">U.S. engineering & ops</div></div></div>
+          <div class="pill"><span class="tick"></span><div><strong>Cold Multisig</strong><div class="mini">Operational key security</div></div></div>
+          <div class="pill"><span class="tick"></span><div><strong>No 3rd‑party badges</strong><div class="mini">Independent routing</div></div></div>
+          <div class="pill"><span class="tick"></span><div><strong>Audit‑ready</strong><div class="mini">CI gates & logs</div></div></div>
+        </div>
+      </div>
+
+      <aside class="flagpanel" aria-label="American craft panel">
+        <div class="flag" aria-hidden="true"></div>
+        <div class="flagstars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div style="position:absolute; bottom:18px; left:18px; right:18px; background:#0F131B; border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:16px">
+          <div style="font-weight:800; font-size:18px">Launch Countdown</div>
+          <div id="count" style="margin-top:6px; font-variant-numeric:tabular-nums; font-size:28px; font-weight:800">00d 00h 00m 00s</div>
+          <div class="mini">Target: <span id="target"></span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="features" class="tiles">
+      <article class="tile"><h3>Precision Pricing</h3><p>Decimals‑aware, integer math to resist rounding exploits and slippage abuse.</p></article>
+      <article class="tile"><h3>Guarded Execution</h3><p>Parameter guards, stale‑oracle defenses, and authority fencing at every hop.</p></article>
+      <article class="tile"><h3>Built for Scale</h3><p>Clear fees, clean APIs, and observability hooks for analytics and dashboards.</p></article>
+    </section>
+
+    <section id="timeline" class="timeline">
+      <div class="step"><div class="left">Phase 1</div><div class="right"><strong>Devnet Hardening</strong> — fuzzing, property tests, and UI polish.
+        <div class="mini">Includes pool health, history, and analytics blocks.</div></div></div>
+      <div class="step"><div class="left">Phase 2</div><div class="right"><strong>Beta Access (Invite‑only)</strong> — whitelisted wallets, rate limits, and bug bounty.</div></div>
+      <div class="step"><div class="left">Phase 3</div><div class="right"><strong>Mainnet Launch</strong> — staged liquidity, real‑time monitoring, and immutable journals.</div></div>
+    </section>
+
+    <section id="legal" class="tiles" aria-label="Compliance and trust">
+      <article class="tile"><h3>U.S. Crafted</h3><p>Designed and assembled by C2C Consulting LLC, Texas, USA.</p></article>
+      <article class="tile"><h3>Security First</h3><p>Cold multisig for keys; minimal hot wallets for ops. Continuous dependency scans.</p></article>
+      <article class="tile"><h3>Clear Policies</h3><p>Terms, Privacy, and Compliance pages ready at launch.</p></article>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div class="mini">© <span id="yr"></span> C2C Consulting LLC — Built in the USA.</div>
+        <div class="links mini">
+          <a href="/terms">Terms</a>
+          <span aria-hidden="true">•</span>
+          <a href="/privacy">Privacy</a>
+          <span aria-hidden="true">•</span>
+          <a href="/compliance">Compliance Notice</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Countdown date (override as needed)
+    const OVERRIDE = null; // e.g., new Date('2025-10-01T18:00:00')
+    const target = OVERRIDE || new Date(Date.now() + 38*24*60*60*1000);
+    const countEl = document.getElementById('count');
+    const targetEl = document.getElementById('target');
+    function pad(n){return String(n).padStart(2,'0')}
+    function tick(){
+      const now = new Date();
+      let diff = Math.max(0, target - now);
+      const d = Math.floor(diff / (1000*60*60*24)); diff -= d*24*60*60*1000;
+      const h = Math.floor(diff / (1000*60*60));    diff -= h*60*60*1000;
+      const m = Math.floor(diff / (1000*60));       diff -= m*60*1000;
+      const s = Math.floor(diff / 1000);
+      countEl.textContent = `${pad(d)}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+    }
+    setInterval(tick, 1000); tick();
+    targetEl.textContent = target.toLocaleString();
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Entrance micro-animations
+    document.addEventListener('DOMContentLoaded', () => {
+      const els = document.querySelectorAll('.tile, .pill, .flagpanel, .heroContent h1, .badgeUS');
+      els.forEach((e,i)=>{ e.style.opacity=0; e.style.transform='translateY(8px)'; setTimeout(()=>{e.style.transition='opacity .6s ease, transform .6s ease'; e.style.opacity=1; e.style.transform='translateY(0)';}, 60*i); });
+    });
+  </script>
+</body>
+</html>
